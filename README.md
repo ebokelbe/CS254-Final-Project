@@ -1,4 +1,4 @@
-# CS 254 Final Project: Audio Feature Recognition
+# CS 254 Final Project: Classification of Gender and Emotion in Speech Recordings
 Ethan Bokelberg, Garrett Faucher, Calli Fuller, Finn Dority
 
 # Introduction
@@ -60,11 +60,10 @@ We also found a paper (Joy et al., 2020) that followed very similar procedures t
 In terms of how humans do with emotion classification, we found a study done on how well humans do for emotion classification (Laussen & Hammerschmidt, 2020), which resulted in an approximate 80% accuracy for humans. This is only a 10% increase in accuracy compared to our machine learning algorithms - and humans are even worse at classifying “surprise” in a voice sample than most documented models. This is important to note, as although at first glance a precision of ~70% for the emotion classification model does not seem great, when we compare it to what it is attempting to simulate, that is, human emotion classification, it is really not all that far off, and works very well as a starting point for further ventures into voice classification.
 
 # Code and Data Set
-File Repo: https://github.com/ebokelbe/CS254-Final-Project 
-
 We decided to implement a “divide and conquer” sort of approach, with each member trying out running the data through different algorithms for comparison. Ethan worked with a Random Forest classifier, Calli worked with MLP Neural Networks, and Garrett worked on a Convolutional Neural Network (CNN)
 
-Our data csv is too large to upload to github, so we used the uvm file transfer system to share it between ourselves.
+Unfortunately, the MFCC csv is too large to upload to github, but information about the files the MFCCs were extracted from is below.
+
 The dataset we are using (found here, also cited in bibliography as (Livingstone & Frank, 2018)) is extremely well labeled, with each audio file following a naming convention of the following format: Modality-Vocal Channel-Emotion-Emotional Intensity-Statement-Repetition-Actor. Because of this, we will not have any need to go through the data and label it, which gives us more time to just get started on work with the algorithms. The contents of the dataset, in the exact words of the dataset creators, is “24 professional actors (12 female, 12 male), vocalizing two lexically-matched statements in a neutral North American accent. Speech includes calm, happy, sad, angry, fearful, surprise, disgust expressions, and the songs contains calm, happy, sad, angry, and fearful emotions. Each expression is produced at two levels of emotional intensity (normal, strong), with an additional neutral expression. All conditions are available in three modality formats: Audio-only, Audio-Video, and Video-only” (Livingstone & Frank, 2018). For the purposes of our project, we will only focus on the audio only non-singing subset of the dataset, which should provide us with 1440 data points. This dataset is publicly available and we will not need any special hardware for processing. We will be using a python package called Librosa and pydub to process the audio data in order to pull out the MFCC values to feed into our model. Librosa is able to take WAV files provided from our dataset and turn them into numpy arrays in a format called MFCC. Since these WAV files were of differing lengths, pydub was used to pad the audio samples in order to have MFCCs of equal sizes for manipulation in the future. Once padded, all of the sound data can be combined into a large numpy file for manipulation that is no longer bound to the WAV file format. When the data was received, the data’s labels were stored in the individual WAV files names. The labels were extracted from the file names via Python into a numpy array which was additionally stored as a separate numpy file.
 
 # Conclusion
